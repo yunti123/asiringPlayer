@@ -1,4 +1,4 @@
-package com.yunti.asiringmusic;
+package com.yunti.asiringmusic.utils;
 
 import android.app.Notification;
 import android.app.PendingIntent;
@@ -13,6 +13,8 @@ import android.os.IBinder;
 import android.os.PowerManager;
 import android.provider.MediaStore;
 import android.support.annotation.Nullable;
+
+import com.yunti.asiringmusic.MainActivity;
 
 import java.util.ArrayList;
 import java.util.Random;
@@ -105,8 +107,7 @@ public class MusicService extends Service implements
     }
 
     public void initMusicPlayer(){
-        //Buraya bak
-        //player.setWakeMode(getApplicationContext(), PowerManager.PARTIAL_WAKE_LOCK);
+        player.setWakeMode(getApplicationContext(), PowerManager.PARTIAL_WAKE_LOCK);
         player.setAudioStreamType(AudioManager.STREAM_MUSIC);
         player.setOnPreparedListener(this);
         player.setOnCompletionListener(this);
@@ -206,7 +207,7 @@ public class MusicService extends Service implements
     |---------------------------------------------------------------*/
 
     public class MusicBinder extends Binder {
-        MusicService getService() {
+        public MusicService getService() {
             return MusicService.this;
         }
     }

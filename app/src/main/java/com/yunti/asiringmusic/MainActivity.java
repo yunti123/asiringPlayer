@@ -9,13 +9,16 @@ import android.database.Cursor;
 import android.net.Uri;
 import android.os.IBinder;
 import android.provider.MediaStore;
-import android.provider.Settings;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.ListView;
 import android.widget.MediaController;
+
+import com.yunti.asiringmusic.utils.MusicService;
+import com.yunti.asiringmusic.utils.Song;
+import com.yunti.asiringmusic.utils.SongAdapter;
 
 import java.util.ArrayList;
 import java.util.Collections;
@@ -31,19 +34,17 @@ public class MainActivity extends AppCompatActivity implements MediaController.M
     private boolean musicBound;
     private boolean paused;
     private boolean playbackPaused;
-    private MusicController controller;
+    private MediaController controller;
 
     /*---------------------------------------------------------------|
     |-------------------------Constructor----------------------------|
     |---------------------------------------------------------------*/
 
-
+    
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-
-        System.out.println("Main init");
 
         this.songView = (ListView)findViewById(R.id.song_list);
         this.songs = new ArrayList<Song>();
@@ -68,7 +69,7 @@ public class MainActivity extends AppCompatActivity implements MediaController.M
     }
 
     /*---------------------------------------------------------------|
-    |--------------------------Implementa----------------------------|
+    |--------------------------Implements----------------------------|
     |---------------------------------------------------------------*/
 
     @Override
@@ -231,7 +232,7 @@ public class MainActivity extends AppCompatActivity implements MediaController.M
     }
 
     private void setController(){
-        controller = new MusicController(this);
+        controller = new MediaController(this);
         controller.setPrevNextListeners(new View.OnClickListener() {
             @Override
             public void onClick(View v) {

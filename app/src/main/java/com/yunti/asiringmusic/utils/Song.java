@@ -1,4 +1,4 @@
-package com.yunti.asiringmusic;
+package com.yunti.asiringmusic.utils;
 
 public class Song {
     private String title;
